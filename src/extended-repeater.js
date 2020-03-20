@@ -1,17 +1,19 @@
 module.exports = function repeater(str, options) {
-    if (str === null || str === undefined) {
-        return false;
-    }
-    else if (options.repeatTimes === undefined) {
-        return false;
-    }
-    else if (options.addition !== undefined && options.additionRepeatTimes === undefined) {
+    if (str === undefined) {
         return false;
     }
     else {
-        str.toString();
+        if (str === null) {
+            str = 'null';
+        } else {
+            str.toString();
+        }
 
-        let repeat = options.repeatTimes;
+        if (options.repeatTimes === undefined) {
+            var repeat = 1;
+        } else {
+            var repeat = options.repeatTimes;
+        }
 
         if (options.separator === undefined) {
             var sep = '+';
@@ -20,7 +22,9 @@ module.exports = function repeater(str, options) {
         }
 
         let add = options.addition;
-        if (add !== undefined) {
+        if (add === null) {
+            add = 'null';
+        } else if (add !== undefined) {
             add.toString();
         }
 
