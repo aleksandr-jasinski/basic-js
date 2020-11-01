@@ -11,23 +11,24 @@ class VigenereCipheringMachine {
       throw new Error;
     } else {
       let result = '';
-      let MES = message.toString().toUpperCase();
-      let KEY = key.toString().toUpperCase();
-      const maxLen = Math.max(MES.length, KEY.length);
-      const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-      for (let i = 0; i < maxLen; i += 1) {
+      const MES = message.toUpperCase();
+      const KEY = key.toUpperCase();
+      const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const N = ABC.length;
+      let j = 0;
+      for (let i = 0; i < MES.length; i += 1) {
         let ms = MES[((i >= MES.length) ? i % MES.length : i)];
-        let msi = abc.indexOf(ms);
-        let sign;
+        let msi = ABC.indexOf(ms);
+
         if (msi === -1) {
-          sign = ms;
+          result += ms;
         } else {
-          let ks = KEY[((i >= KEY.length) ? i % KEY.length : i)];
-          let ksi = abc.indexOf(ks);
-          sign = abc[(((26 + (msi + ksi)) % 26))];
+          let ks = KEY[((j >= KEY.length) ? j % KEY.length : j)];
+          let ksi = ABC.indexOf(ks);
+          result += ABC[(((N + (msi + ksi)) % N))];
+          j += 1;
         }
-        result += sign;
+
       }
       return (this.isDirect ? result : result.split('').reverse().join(''));
     }
@@ -38,23 +39,24 @@ class VigenereCipheringMachine {
       throw new Error;
     } else {
       let result = '';
-      let MES = message.toString().toUpperCase();
-      let KEY = key.toString().toUpperCase();
-      const maxLen = Math.max(MES.length, KEY.length);
-      const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-      for (let i = 0; i < maxLen; i += 1) {
+      const MES = message.toUpperCase();
+      const KEY = key.toUpperCase();
+      const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const N = ABC.length;
+      let j = 0;
+      for (let i = 0; i < MES.length; i += 1) {
         let ms = MES[((i >= MES.length) ? i % MES.length : i)];
-        let msi = abc.indexOf(ms);
-        let sign;
+        let msi = ABC.indexOf(ms);
+
         if (msi === -1) {
-          sign = ms;
+          result += ms;
         } else {
-          let ks = KEY[((i >= KEY.length) ? i % KEY.length : i)];
-          let ksi = abc.indexOf(ks);
-          sign = abc[(((26 + (msi - ksi)) % 26))];
+          let ks = KEY[((j >= KEY.length) ? j % KEY.length : j)];
+          let ksi = ABC.indexOf(ks);
+          result += ABC[(((N + (msi - ksi)) % N))];
+          j += 1;
         }
-        result += sign;
+
       }
       return (this.isDirect ? result : result.split('').reverse().join(''));
     }
