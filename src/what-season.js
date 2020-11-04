@@ -4,17 +4,23 @@ module.exports = function getSeason(date) {
   } else if (isNaN(date) || isNaN(Date.parse(date))) {
     throw new Error();
   } else {
-    let monthNum = date.getMonth();
-
-    if (monthNum === 11 || monthNum === 0 || monthNum === 1) {
-      return 'winter';
-    } else if (monthNum === 2 || monthNum === 3 || monthNum === 4) {
-      return 'spring';
-    } else if (monthNum === 5 || monthNum === 6 || monthNum === 7) {
-      return 'summer';
-    } //if (monthNum === 8 || monthNum === 9 || monthNum === 10)
-    else {
-      return 'autumn';
-    }
+      switch (date.getMonth()) {
+        case 11:
+        case 0:
+        case 1:
+          return 'winter';
+        case 2:
+        case 3:
+        case 4:
+          return 'spring';
+        case 5:
+        case 6:
+        case 7:
+          return 'summer';
+        case 8:
+        case 9:
+        case 10:
+          return 'autumn';
+      }
   }
 };
