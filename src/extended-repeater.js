@@ -1,10 +1,11 @@
 module.exports = function repeater(str, options) {
   if (str === undefined) {return false;}
 
+  let string;
   if (str === null) {
-    str = 'null';
+    string = 'null';
   } else {
-    str.toString();
+    string = str.toString();
   }
 
   let add = options.addition;
@@ -14,18 +15,18 @@ module.exports = function repeater(str, options) {
     add.toString();
   }
 
-  let repeat = options.repeatTimes  === undefined ? 1 : options.repeatTimes;
+  const repeat = options.repeatTimes  === undefined ? 1 : options.repeatTimes;
 
-  let sep = options.separator === undefined ? '+' : options.separator;
+  const sep = options.separator === undefined ? '+' : options.separator;
 
-  let addRepeat = options.additionRepeatTimes === undefined ? 1 : options.additionRepeatTimes;
+  const addRepeat = options.additionRepeatTimes === undefined ? 1 : options.additionRepeatTimes;
 
-  let addSep = options.additionSeparator === undefined ? '|' : options.additionSeparator;
+  const addSep = options.additionSeparator === undefined ? '|' : options.additionSeparator;
 
   const repeating = [];
 
   for (let r = 0; r < repeat; r += 1) {
-    repeating.push(str);
+    repeating.push(string);
 
     for (let a = 0; a < addRepeat - 1; a += 1) {
       repeating.push(add);
